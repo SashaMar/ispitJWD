@@ -1,0 +1,26 @@
+<div ng-controller="editKonfiguracijeCTRL">
+	<form>
+		<div class="form-group">
+			<label for="nkPr">Proizvođač</label>
+			<select class="form-control" name="nkPr" ng-model="konfiguracija.proizvodjacId">
+			<option ng-repeat="proizvodjac in proizvodjaci" ng-click="getModelePoProizvodjacu(proizvodjac.id)"  value={{proizvodjac.id}}>{{proizvodjac.naziv}}</option>
+		</select>
+		</div>
+		<div class="form-group">
+			<label for="nkModel">Model</label>
+			<select class="form-control" name="nkModel" ng-model="konfiguracija.modelId">
+			<option ng-repeat="model in modeliPoProizvodjacu" value={{model.id}}>{{model.naziv}}</option>
+		</select>
+		</div>
+		<div class="formgroup">
+			<label for="ram">RAM</label>
+			<input class="form-control" type="text" name="ram" ng-model="konfiguracija.ram">
+		</div>
+		<div class="formgroup">
+			<label for="cena">Cena</label>
+			<input class="form-control" type="text" name="cena" ng-model="konfiguracija.cena">
+		</div>
+		<button class="btn btn-primary" ng-click="izmeni()">Izmeni</button>
+	</form>
+	
+</div>

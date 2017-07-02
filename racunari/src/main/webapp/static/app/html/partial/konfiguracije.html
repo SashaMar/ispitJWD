@@ -1,0 +1,83 @@
+<div ng-controller="konfiguracijeCTRL">
+	<form>
+		<div class="form-group">
+			<label for="nkPr">Proizvođač</label>
+			<select class="form-control" name="nkPr" ng-model="newKonfiguracija.proizvodjacId">
+			<option ng-repeat="proizvodjac in proizvodjaci" ng-click="getModelePoProizvodjacu(proizvodjac.id)" value={{proizvodjac.id}}>{{proizvodjac.naziv}}</option>
+		</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="nkModel">Model</label>
+			<select class="form-control" name="nkModel" ng-model="newKonfiguracija.modelId">
+			<option ng-repeat="model in modeliPoProizvodjacu" value={{model.id}}>{{model.naziv}}</option>
+		</select>
+		</div>
+		<div class="formgroup">
+			<label for="ram">RAM</label>
+			<input class="form-control" type="text" name="ram" ng-model="newKonfiguracija.ram">
+		</div>
+		<div class="formgroup">
+			<label for="cena">Cena</label>
+			<input class="form-control" type="text" name="cena" ng-model="newKonfiguracija.cena">
+		</div>
+		<button class="btn btn-primary" ng-click="addKonfiguracija()">Sačuvaj</button>
+	</form>
+
+	<br/>
+	<br/>
+	<form>
+		<div class="form-group">
+			<label for="kModel">Model</label>
+			<select class="form-control" name="kModel" ng-model="wantedKonfig.modelNaziv">
+			<option ng-repeat="model in modeli">{{model.naziv}}</option>
+		</select>
+		</div>
+		<div class="formgroup">
+			<label for="minCena">Cena od:</label>
+			<input class="form-control" type="text" name="minCena" ng-model="wantedKonfig.minCena">
+		</div>
+		<div class="formgroup">
+			<label for="maxCena">Cena do:</label>
+			<input class="form-control" type="text" name="maxCena" ng-model="wantedKonfig.maxCena">
+		</div>
+		<div class="formgroup">
+			<label for="minRam">RAM od:</label>
+			<input class="form-control" type="text" name="minRam" ng-model="wantedKonfig.minRam">
+		</div>
+		<div class="formgroup">
+			<label for="maxRam">RAM do:</label>
+			<input class="form-control" type="text" name="maxRam" ng-model="wantedKonfig.maxRam">
+		</div>
+		<button class="btn btn-primary" ng-click="trazi()">Filtriraj</button>
+	</form>
+
+	<div class="btn-group pull-right"> 
+	    <button class="btn btn-primary" ng-click="changePage(-1)" ng-disabled="pageNum == 0">Prethodno</button>
+		<button class="btn btn-primary" ng-click="changePage(1)" ng-disabled="pageNum == totalPages - 1">Sledeće</button>
+	</div> 
+	<div>
+	<table class="table table-striped">
+		<tr>
+			<th>Proizvođač</th>
+			<th>Model</th>
+			<th>RAM</th>
+			<th>Cena</th>
+			<th>Akcija</th>
+		</tr>
+		<tr ng-repeat="konfiguracija in konfiguracije">
+			<td>{{konfiguracija.modelProizvodjac}}</td>
+			<td>{{konfiguracija.modelNaziv}}</td>
+			<td>{{konfiguracija.ram}}</td>
+			<td>{{konfiguracija.cena}}</td>
+			<td>
+				<button class="btn btn-danger" ng-click="obrisi(konfiguracija.id)">Obriši</button>
+				<button class="btn btn-warning" ng-click="ubaciObjekat(konfiguracija.id)">Izmeni</button>
+				<button class="btn btn-warning" ng-click="izmeniNaDrugojStr(konfiguracija.id)">Izmeni na novoj stranici</button>
+			</td>
+		</tr>
+	</table>
+</div> 
+
+
+</div>
